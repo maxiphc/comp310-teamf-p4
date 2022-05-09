@@ -11,8 +11,8 @@ class PseudoRandom:
         self.m = 2**31
 
     def get_seed(self):
-        seed = time.monotonic() 
-        self.seed = int(str(seed)[-3:])  # taking the 3 decimal places at the end of what is returned by time.monotonic()
+        seed = time.monotonic()
+        self.seed = int(str(seed).replace(".", "")[-3:])  # taking the 3 decimal places at the end of what is returned by time.monotonic()
 
     def generate_random(self, prev_random, range):
         """
@@ -31,5 +31,5 @@ class PseudoRandom:
 if __name__ == "__main__":
     test = PseudoRandom()
     for i in range(10):
-        rand = test.generate_random(test.prev, 10)
+        rand = test.generate_random(test.prev, 36)
         print(rand)
