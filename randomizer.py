@@ -28,8 +28,8 @@ class PseudoRandom:
         
         return math.ceil((raw_num / self.m) * range)
 
-if __name__ == "__main__":
-    test = PseudoRandom()
-    for i in range(10):
-        rand = test.generate_random(test.prev, 10)
-        print(rand)
+#if __name__ == "__main__"
+test = PseudoRandom()
+for i in range(1):
+    rand = test.generate_random(test.prev, 38)
+    #print(rand)
