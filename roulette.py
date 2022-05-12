@@ -32,7 +32,7 @@ def playRoulette(betAmount, bankroll):
         elif userBet == 37:
 
             # they are correct
-            if (userBet % 2) == 1:
+            if (new_rand % 2) == 1:
                 payout = betAmount * 2
                 print(f"\nYou bet on Red. The winning bet was {str(new_rand)} (Red) Congrats you won ${payout}")
                 return payout
@@ -43,7 +43,7 @@ def playRoulette(betAmount, bankroll):
 
         # user bets on black, even odds
         elif userBet == 38:
-            if (userBet % 2) == 0:
+            if (new_rand % 2) == 0:
                 payout = betAmount * 2
                 print(f"\nYou bet on Black. The winning bet was {str(new_rand)} (Black). Congrats you won ${payout}")
                 return payout
@@ -93,7 +93,7 @@ while bankroll > 0:
         if result == -1:
             bankroll -= userBet
         else:
-            bankroll += result
+            bankroll += (result - userBet)
 
                 
     #says goodbye to user if they type 'n' 
