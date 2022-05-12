@@ -4,7 +4,6 @@ from randomizer import PseudoRandom
 
 def playRoulette():
     
-    #the class declartion inside the function so that each time the function is called a new no is generated 
     randomizer = PseudoRandom()                               
     new_rand = randomizer.generate_random(randomizer.prev,38)
     
