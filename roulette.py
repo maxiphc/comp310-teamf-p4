@@ -27,6 +27,7 @@ def playRoulette(betAmount, bankroll):
             if userBet <= 36:
                 payout = betAmount * 35 
                 print(f"\nYou bet on the number {userBet}. The winning bet was {str(new_rand)}. Congrats you won ${payout}!")
+                return payout
 
         # user bets on red (all odd numbers), even odds, 
         elif userBet == 37:
