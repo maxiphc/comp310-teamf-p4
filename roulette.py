@@ -93,7 +93,7 @@ while bankroll > 0:
         if result == -1:
             bankroll -= userBet
         else:
-            bankroll += result
+            bankroll += (result - userBet)
 
                 
     #says goodbye to user if they type 'n' 
