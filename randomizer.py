@@ -36,7 +36,7 @@ if __name__ == "__main__":
     test = PseudoRandom()
     
     #for loop to generate n times 
-    for i in range(1000):
+    for i in range(1):
         
         #generates the random number 
         rand = test.generate_random(test.prev, 36)
