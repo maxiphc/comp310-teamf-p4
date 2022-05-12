@@ -10,8 +10,8 @@ def playRoulette(betAmount, bankroll):
         #asks user to input their own bet
         while(True):
             try:
-                userBet = int(input(f"\nEnter a number between 0-36, Red/Odd Numbers (37), or Black/Even Numbers (38): "))
-                if userBet > 38 or userBet < 0:
+                userBet = int(input(f"\nEnter a number between 1-36, Red/Odd Numbers (37), or Black/Even Numbers (38): "))
+                if userBet > 38 or userBet <= 0:
                     print(f'{userBet} is not a legitimate option. Try again.')
                     continue
                 break
@@ -21,12 +21,13 @@ def playRoulette(betAmount, bankroll):
 
 
         # user bets correctly on single number, 35-1 odds
-        if new_rand == userBet and userBet <= 35:
+        if new_rand == userBet and userBet <= 36:
 
             # user guesses single number correctly, 35 to 1 odds. 
             if userBet <= 36:
                 payout = betAmount * 35 
                 print(f"\nYou bet on the number {userBet}. The winning bet was {str(new_rand)}. Congrats, you won ${payout}!")
+                return payout
 
         # user bets on red (all odd numbers), even odds, 
         elif userBet == 37:
