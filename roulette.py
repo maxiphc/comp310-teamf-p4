@@ -12,11 +12,11 @@ def playRoulette(betAmount, bankroll):
             try:
                 userBet = int(input(f"\nEnter a number between 0-36, Red/Odd Numbers (37), or Black/Even Numbers (38): "))
                 if userBet > 38 or userBet < 0:
-                    print(f'{userBet} is not a legitable option. Try again.')
+                    print(f'{userBet} is not a legitimate option. Try again.')
                     continue
                 break
             except ValueError:
-                print(f"{userBet} is not a real number silly. Try again.")
+                print(f"{userBet} is not a real number, silly! Try again.")
                 continue
 
 
@@ -26,7 +26,7 @@ def playRoulette(betAmount, bankroll):
             # user guesses single number correctly, 35 to 1 odds. 
             if userBet <= 36:
                 payout = betAmount * 35 
-                print(f"\nYou bet on the number {userBet}. The winning bet was {str(new_rand)}. Congrats you won ${payout}!")
+                print(f"\nYou bet on the number {userBet}. The winning bet was {str(new_rand)}. Congrats, you won ${payout}!")
 
         # user bets on red (all odd numbers), even odds, 
         elif userBet == 37:
@@ -34,7 +34,7 @@ def playRoulette(betAmount, bankroll):
             # they are correct
             if (userBet % 2) == 1:
                 payout = betAmount * 2
-                print(f"\nYou bet on Red. The winning bet was {str(new_rand)} (Red) Congrats you won ${payout}")
+                print(f"\nYou bet on Red. The winning bet was {str(new_rand)} (Red). Congrats, you won ${payout}")
                 return payout
 
             else:
@@ -45,7 +45,7 @@ def playRoulette(betAmount, bankroll):
         elif userBet == 38:
             if (userBet % 2) == 0:
                 payout = betAmount * 2
-                print(f"\nYou bet on Black. The winning bet was {str(new_rand)} (Black). Congrats you won ${payout}")
+                print(f"\nYou bet on Black. The winning bet was {str(new_rand)} (Black). Congrats, you won ${payout}")
                 return payout
             else:
                 print(f"\nThe winning bet was {str(new_rand)} (Red). You lost ${betAmount}")
@@ -98,7 +98,7 @@ while bankroll > 0:
                 
     #says goodbye to user if they type 'n' 
     else:
-        print(f"\nThank you for betting. You ended with ${bankroll} Goodbye.\n")
+        print(f"\nThank you for betting. You ended with ${bankroll}. Goodbye!\n")
         break
 
 print('You lost. Run the program to play again! Goodbye.')
