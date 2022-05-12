@@ -10,7 +10,7 @@ def playRoulette(betAmount, bankroll):
         #asks user to input their own bet
         while(True):
             try:
-                userBet = int(input(f"\nEnter a number between 0-36, Red/Odd Numbers (37), or Black/Even Numbers (38): "))
+                userBet = int(input(f"\nEnter a number between 1-36, Red/Odd Numbers (37), or Black/Even Numbers (38): "))
                 if userBet > 38 or userBet < 0:
                     print(f'{userBet} is not a legitable option. Try again.')
                     continue
