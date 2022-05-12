@@ -16,7 +16,7 @@ class PseudoRandom:
 
     def generate_random(self, prev_random, range):
         """
-        Returns a pseudorandom number between 1 and range.
+        Returns a pseudorandom number between 1 and range (inclusive).
         """
         # if first value, then get the seed to determine starting point
         if self.seed == -1:
@@ -28,18 +28,8 @@ class PseudoRandom:
         
         return math.ceil((raw_num / self.m) * range)
 
-#if randomizer.py is ran on its own the random number generated will print
-#when randomizer is imported into roulette.py (driver program) the number will not print 
-if __name__ == "__main__":
-    
-    #initializes the PseudoRandom class
-    test = PseudoRandom()
-    
-    #for loop to generate n times 
-    for i in range(1):
-        
-        #generates the random number 
-        rand = test.generate_random(test.prev, 38)
-        
-        #prints the random number 
-        print(rand)
+#if __name__ == "__main__":
+    #test = PseudoRandom()
+    #for i in range(10):
+        #rand = test.generate_random(test.prev, 5)
+        #print(rand)

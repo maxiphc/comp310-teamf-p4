@@ -2,63 +2,104 @@ from randomizer import PseudoRandom
 
 #random value generated from randomizer.py is used to display whether user placed the winning bet
 
-def playRoulette():
+def playRoulette(betAmount, bankroll):
     
-    randomizer = PseudoRandom()                               
-    new_rand = randomizer.generate_random(randomizer.prev,38)
-    
-    #asks user to input their own bet
-    userBet = int(input("\nEnter a number between 0-36, Red (37), or Black (38): "))
+        randomizer = PseudoRandom()                               
+        new_rand = randomizer.generate_random(randomizer.prev,36)
+        
+        #asks user to input their own bet
+        while(True):
+            try:
+                userBet = int(input(f"\nEnter a number between 0-36, Red/Odd Numbers (37), or Black/Even Numbers (38): "))
+                if userBet > 38 or userBet < 0:
+                    print(f'{userBet} is not a legitimate option. Try again.')
+                    continue
+                break
+            except ValueError:
+                print(f"{userBet} is not a real number, silly! Try again.")
+                continue
 
 
-    #compares random number generated in randomizer.py to the user's bet to see if they are equal
-    if new_rand == userBet:
+        # user bets correctly on single number, 35-1 odds
+        if new_rand == userBet and userBet <= 35:
 
-        if userBet <= 36:
+            # user guesses single number correctly, 35 to 1 odds. 
+            if userBet <= 36:
+                payout = betAmount * 35 
+                print(f"\nYou bet on the number {userBet}. The winning bet was {str(new_rand)}. Congrats, you won ${payout}!")
 
-            print("\nYou bet on the number " + str(userBet) +". Congrats you won!")
-
+        # user bets on red (all odd numbers), even odds, 
         elif userBet == 37:
 
-            print("\nYou bet on Red. Congrats you won!")
+            # they are correct
+            if (new_rand % 2) > 0:
+                payout = betAmount * 2
+                print(f"\nYou bet on Red. The winning bet was {str(new_rand)} (Red). Congrats, you won ${payout}")
+                return payout
 
+            else:
+                print(f"\nThe winning bet was {str(new_rand)} (Black). You lost ${betAmount}")
+                return -1
+
+        # user bets on black, even odds
         elif userBet == 38:
-
-            print("\nYou bet on Black. Congrats you won!")
-
-        #if user types a bet higher than 38 it is invalid
-
-    elif userBet > 38:
-
-            print("\nYour bet is invalid. Please try again.")
+            if (new_rand % 2) == 0:
+                payout = betAmount * 2
+                print(f"\nYou bet on Black. The winning bet was {str(new_rand)} (Black). Congrats, you won ${payout}")
+                return payout
+            else:
+                print(f"\nThe winning bet was {str(new_rand)} (Red). You lost ${betAmount}")
+                return -1
 
         #if user types bet that does not equal random number that was generated in randomizer.py they lose
+        else:
+                print(f"\nYou bet on the number {userBet}. The winning bet was {str(new_rand)}. You lost ${betAmount}")
+                return -1
 
-    else:
-
-            print("\nThe winning bet was " +str(new_rand) +". You lost.")
-
-
-
-while True:
-
+bankroll = 100
+while bankroll > 0:
     #asks user if they want to bet or continue betting
     userChoice = str(input('\nDo you want to place a bet? (y/n): '))
 
     #checks if the choice is valid or not 
     if userChoice not in ('y', 'n'):
         print("\nInvalid input.")
-        break
+        continue
 
-    
     # runs game if user types 'y' 
     if userChoice == 'y':
-        playRoulette()
         
+        while(True): 
+            try:
+                userBet = int(str(input(f'\nBetting on single number: \t35 to 1 \
+                                            \nBetting on Red/Black: \t\t1 to 1 \
+                                            \n\nYou have ${bankroll}.\nHow much would you like to bet? Please enter a whole number dollar amount: $')))
+                if userBet < 0:
+                    print("Not a valid amount. Try again.")
+                    continue
+                if userBet > bankroll:
+                    print("You don't have that much money! Try again.")
+                    continue
+                else:
+                    breakLoop = True
+                    break
+                
+            except ValueError:
+                print("Enter a real number.")
+                continue
     
+
+        result = playRoulette(userBet, bankroll)
+        if result == -1:
+            bankroll -= userBet
+        else:
+            bankroll += (result - userBet)
+
+                
     #says goodbye to user if they type 'n' 
     else:
-
-        print("\nThank you for betting. Goodbye.\n")
-
+        print(f"\nThank you for betting. You ended with ${bankroll}.\n")
         break
+
+print("Run the program to play again! Goodbye.\n")
+    
